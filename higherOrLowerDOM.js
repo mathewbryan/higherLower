@@ -8,13 +8,18 @@ let newCard;
 let deck = [
     [1, 'Spades'] , [2, 'Spades'] , [3, 'Spades'], [4, 'Spades'] , [5, 'Spades'],  [6, 'Spades'], [7, 'Spades'],
     [8, 'Spades'], [9, 'Spades'], [10, 'Spades'], [10, 'Spades'], [10, 'Spades'], [10, 'Spades'],
-    [1, 'Diamands'] , [2, 'Diamands'] , [3, 'Diamands'], [4, 'Diamands'] , [5, 'Diamands'],  [6, 'Diamands'], [7, 'Diamands'],
-    [8, 'Diamands'], [9, 'Diamands'], [10, 'Diamands'], [10, 'Diamands'], [10, 'Diamands'], [10, 'Diamands'],
+    [1, 'Diamonds'] , [2, 'Diamonds'] , [3, 'Diamonds'], [4, 'Diamonds'] , [5, 'Diamonds'],  [6, 'Diamonds'], [7, 'Diamonds'],
+    [8, 'Diamonds'], [9, 'Diamonds'], [10, 'Diamonds'], [10, 'Diamonds'], [10, 'Diamonds'], [10, 'Diamonds'],
     [1, 'Clubs'] , [2, 'Clubs'] , [3, 'Clubs'], [4, 'Clubs'] , [5, 'Clubs'],  [6, 'Clubs'], [7, 'Clubs'],
     [8, 'Clubs'], [9, 'Clubs'], [10, 'Clubs'], [10, 'Clubs'], [10, 'Clubs'], [10, 'Clubs'],
     [1, 'Hearts'] , [2, 'Hearts'] , [3, 'Hearts'], [4, 'Hearts'] , [5, 'Hearts'],  [6, 'Hearts'], [7, 'Hearts'],
     [8, 'Hearts'], [9, 'Hearts'], [10, 'Hearts'], [10, 'Hearts'], [10, 'Hearts'], [10, 'Hearts'],
 ]
+
+
+startButton.addEventListener("click", () => {
+    firstCard()
+})
 
 class Player {
     constructor(name){ 
@@ -44,12 +49,31 @@ const scoreCalc = () =>{
 
 // used to start the game  
 const startGame = () => {
-    userInput = prompt("Hi! What's your name player 1?")
-    player1 = userInput
-    alert(`Great, lets see if you can play your cards right ${userInput}`)
+    // userInput = prompt("Hi! What's your name player 1?")
+    // player1 = userInput
+    // alert(`Great, lets see if you can play your cards right ${userInput}`)
     const cardPlayer = new Player(userInput, 1)
     console.log(cardPlayer.name)
     currentCardFunc()
+}
+
+// shows the user their current card and asks whether the next card will  be higher or lower
+const currentCardFunc = () => {
+    message.innerHTML = `Is your next card going to be higher or lower than ${currentCard}`;
+    // userInput= prompt(`Is your next card going to be higher or lower than ${currentCard} \n 1. Higher \n 2. Lower`)
+
+    higherButton.addEventListener("click", () => {
+        userInput = 1;
+        console.log('higher')
+        drawCard()
+    })
+    
+    lowerButton.addEventListener("click", () => {
+        userInput = 2;
+        console.log('lower')
+        drawCard()
+    })
+   
 }
 
 // picks random card from the deck variable
@@ -66,50 +90,39 @@ const drawCard = () => {
 
 // compares new card to players current card & compares to user guess
 const higherOrLower = () => {
-if (newCard[0] > currentCard[0] && userInput == 1 || newCard[0] > currentCard[0] && userInput.toLowerCase() == 'higher'){
-    alert(`Your new card is ${newCard}, you were right it was higher! Lets see if you'll be so lucky next time`)
+if (newCard[0] > currentCard[0] && userInput == 1 ){
+    message.innerHTML = `Your new card is ${newCard}, you were right it was higher! Lets see if you'll be so lucky next time`
     currentCard = newCard
+    cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
     numCorrect += 1
     removeCard()
     
 }
-else if (newCard[0] < currentCard[0] && userInput == 2 || newCard[0] < currentCard[0] && userInput.toLowerCase() == 'lower'){
-    alert(`Your new card is ${newCard}, you were right it was lower! Lets see if you'll be so lucky next time`)
+else if (newCard[0] < currentCard[0] && userInput == 2 ){
+    message.innerHTML = `Your new card is ${newCard}, you were right it was lower! Lets see if you'll be so lucky next time`
     currentCard = newCard
+    cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
     numCorrect += 1
     removeCard()
 }
 else if (newCard[0] == currentCard[0]){
-    alert(`New card ${newCard} & ${currentCard} are the same, draw again`)
+    message.innerHTML = `New card ${newCard} & ${currentCard} are the same, draw again`
     drawCard()
 }
 else{
-    alert(`Your card was ${newCard} too bad, you lose!!!`)
+    message.innerHTML = `Your card was ${newCard} too bad, you lose!!!`
     scoreCalc()
 
 }
 }
 
-// shows the user their current card and asks whether the next card will  be higher or lower
-const currentCardFunc = () => {
-    alert(`Your current card is ${currentCard}`)
-    userInput= prompt(`Is your next card going to be higher or lower than ${currentCard} \n 1. Higher \n 2. Lower`)
-    if (userInput == 1 || userInput.toLowerCase() == 'higher'){
-    drawCard()
-    }
-    else if (userInput == 2 || userInput.toLowerCase() == 'lower') {
-    drawCard()
-    } 
-    else{
-        alert('You must make a choice')
-        currentCardFunc()
-    }      
-}
+
 
 // should this be combined in to draw card 
 // assigns random card from deck to be the players first card
 const firstCard = () => {
     currentCard = deck[Math.floor(Math.random()* deck.length)]
+    cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
     currentCard[0]
     startGame()
 }    
@@ -138,4 +151,3 @@ currentCardFunc()
 // }
 
 // use first card to pick a random then startGame runs through a new game 
-firstCard()
