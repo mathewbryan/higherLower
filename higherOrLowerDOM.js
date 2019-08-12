@@ -95,6 +95,7 @@ if (newCard[0] > currentCard[0] && userInput == 1 ){
     currentCard = newCard
     cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
     numCorrect += 1
+
     removeCard()
     
 }
