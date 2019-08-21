@@ -18,6 +18,7 @@ let deck = [
 
 
 startButton.addEventListener("click", () => {
+    startButton.style.visibility = "hidden"
     firstCard()
 })
 
@@ -44,6 +45,12 @@ get currentCard(){
 const scoreCalc = () =>{
     numCorrect += 1
     roundsComplete.innerHTML = numCorrect
+    numCorrect = 0 
+    currentCard;
+    newCard
+    cardimage.src = "./cards/Gray_back.jpg"
+    startButton.style.visibility = ""
+
     // playAgain()
 }
 
@@ -52,6 +59,7 @@ const startGame = () => {
     // userInput = prompt("Hi! What's your name player 1?")
     // player1 = userInput
     // alert(`Great, lets see if you can play your cards right ${userInput}`)
+    roundsComplete.innerHTML = numCorrect
     const cardPlayer = new Player(userInput, 1)
     console.log(cardPlayer.name)
     currentCardFunc()
@@ -94,6 +102,7 @@ if (newCard[0] > currentCard[0] && userInput == 1 ){
     message.innerHTML = `Your new card is ${newCard}, you were right it was higher! Lets see if you'll be so lucky next time`
     currentCard = newCard
     cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
+    
     numCorrect += 1
 
     removeCard()
@@ -108,10 +117,13 @@ else if (newCard[0] < currentCard[0] && userInput == 2 ){
 }
 else if (newCard[0] == currentCard[0]){
     message.innerHTML = `New card ${newCard} & ${currentCard} are the same, draw again`
+    currentCard = newCard
     drawCard()
 }
 else{
     message.innerHTML = `Your card was ${newCard} too bad, you lose!!!`
+    currentCard = newCard
+    cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
     scoreCalc()
 
 }
