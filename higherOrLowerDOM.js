@@ -105,7 +105,7 @@ if (newCard[0] >= currentCard[0] && userInput == 1 ){
     cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
     
     numCorrect += 1
-
+    roundsComplete.innerHTML = numCorrect
     currentCardFunc()
     
 }
@@ -115,6 +115,7 @@ else if (newCard[0] <= currentCard[0] && userInput == 2 ){
     message.innerHTML = `Is your next card going to be higher or lower than ${currentCard}`;
     cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
     numCorrect += 1
+    roundsComplete.innerHTML = numCorrect
     currentCardFunc()
 }
 // else if (newCard[0] == currentCard[0]){
