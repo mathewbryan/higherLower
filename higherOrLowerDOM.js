@@ -46,8 +46,9 @@ const scoreCalc = () =>{
     numCorrect += 1
     roundsComplete.innerHTML = numCorrect
     numCorrect = 0 
-    currentCard;
-    newCard
+    currentCard = 0
+    newCard = 0
+    userInput = 0
     cardimage.src = "./cards/Gray_back.jpg"
     startButton.style.visibility = ""
 
@@ -61,7 +62,6 @@ const startGame = () => {
     // alert(`Great, lets see if you can play your cards right ${userInput}`)
     roundsComplete.innerHTML = numCorrect
     const cardPlayer = new Player(userInput, 1)
-    console.log(cardPlayer.name)
     currentCardFunc()
 }
 
@@ -98,28 +98,30 @@ const drawCard = () => {
 
 // compares new card to players current card & compares to user guess
 const higherOrLower = () => {
-if (newCard[0] > currentCard[0] && userInput == 1 ){
+if (newCard[0] >= currentCard[0] && userInput == 1 ){
     message.innerHTML = `Your new card is ${newCard}, you were right it was higher! Lets see if you'll be so lucky next time`
     currentCard = newCard
+    message.innerHTML = `Is your next card going to be higher or lower than ${currentCard}`;
     cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
     
     numCorrect += 1
 
-    removeCard()
+    currentCardFunc()
     
 }
-else if (newCard[0] < currentCard[0] && userInput == 2 ){
+else if (newCard[0] <= currentCard[0] && userInput == 2 ){
     message.innerHTML = `Your new card is ${newCard}, you were right it was lower! Lets see if you'll be so lucky next time`
     currentCard = newCard
+    message.innerHTML = `Is your next card going to be higher or lower than ${currentCard}`;
     cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
     numCorrect += 1
-    removeCard()
+    currentCardFunc()
 }
-else if (newCard[0] == currentCard[0]){
-    message.innerHTML = `New card ${newCard} & ${currentCard} are the same, draw again`
-    currentCard = newCard
-    drawCard()
-}
+// else if (newCard[0] == currentCard[0]){
+//     message.innerHTML = `New card ${newCard} & ${currentCard} are the same, draw again`
+//     currentCard = newCard
+//     drawCard()
+//}
 else{
     message.innerHTML = `Your card was ${newCard} too bad, you lose!!!`
     currentCard = newCard
@@ -141,14 +143,14 @@ const firstCard = () => {
 }    
 
 // removes chosen card from the deck array
-const removeCard = () => { 
-removeIndex = deck.indexOf(currentCard)
-console.log(deck.indexOf(currentCard))
-// delete deck[removeIndex]
-deck.splice(removeIndex, 1) 
-console.log(deck)
-currentCardFunc()
-}
+    // const removeCard = () => { 
+    // removeIndex = deck.indexOf(currentCard)
+    // console.log(deck.indexOf(currentCard))
+    // // delete deck[removeIndex]
+    // deck.splice(removeIndex, 1) 
+    // console.log(deck)
+    // currentCardFunc()
+    // }
 
 // // starts a new game or quits the program
 // const playAgain = () => {
