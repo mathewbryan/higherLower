@@ -43,7 +43,7 @@ get currentCard(){
 // can be used to see how many correct guesses a user has 
 const scoreCalc = () =>{
     numCorrect += 1
-    alert(`You managed to get through ${numCorrect} rounds`)
+    roundsComplete.innerHTML = numCorrect
     // playAgain()
 }
 
