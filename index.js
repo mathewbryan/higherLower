@@ -80,5 +80,4 @@ const drawNewCard = ()  => {
          message.innerHTML = `Incorrect your new card was ${newCard} game over`
          startButton.style.visibility = ""
      }
-
- }
+    }
