@@ -59,15 +59,17 @@ const drawNewCard = ()  => {
         currentCard = newCard
         number.innerHTML = `${currentCard}`
         numCorrect += 1
+        cardimage.src = `./cards/${currentCard[0]}${currentCard[1]}.jpg`
         roundsComplete.innerHTML = `${numCorrect}`
-        cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
+        
      }
      else if (newCard[0] < currentCard[0] && userInput == 2){
          currentCard = newCard
          number.innerHTML = `${currentCard}`
          numCorrect += 1
+        cardimage.src = `./cards/${currentCard[0]}${currentCard[1]}.jpg`
         roundsComplete.innerHTML = `${numCorrect}`
-        cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
+
 
      }
      else if ( newCard[0] == currentCard[0] ) {

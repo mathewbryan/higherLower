@@ -98,7 +98,7 @@ if (newCard[0] > currentCard[0] && userInput == 1 ){
     message.innerHTML = `Your new card is ${newCard}, you were right it was higher! Lets see if you'll be so lucky next time`
     currentCard = newCard
     // message.innerHTML = `Is your next card going to be higher or lower than ${currentCard}`;
-    cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
+    cardImage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
     
     numCorrect += 1
     roundsComplete.innerHTML = numCorrect
@@ -109,7 +109,7 @@ else if (newCard[0] < currentCard[0] && userInput == 2 ){
     message.innerHTML = `Your new card is ${newCard}, you were right it was lower! Lets see if you'll be so lucky next time`
     currentCard = newCard
     // message.innerHTML = `Is your next card going to be higher or lower than ${currentCard}`;
-    cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
+    cardImage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
     numCorrect += 1
     roundsComplete.innerHTML = numCorrect
     drawCard()
@@ -122,7 +122,7 @@ else if (newCard[0] == currentCard[0]){
 else{
     message.innerHTML = `Your card was ${newCard} too bad, you lose!!!`
     currentCard = newCard
-    cardimage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
+    cardImage.src = `cards/${currentCard[0]}${currentCard[1]}.jpg`
     startButton.style.visibility = ""
 
 }
